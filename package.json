@@ -1,0 +1,10 @@
+{
+  "name": "fidbee",
+  "private": false,
+  "workspaces": {
+    "packages": [
+      "lib",
+      "demo"
+    ]
+  }
+}
