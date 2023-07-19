@@ -25,3 +25,43 @@ Fidbee is a volunteer effort.
 Thanks! :heart:
 
 Octree Team
+
+## Development workflow
+
+### 1. Fork the [repository](https://github.com/octree-gva/fidbee)
+
+[Go to the repository](https://github.com/octree-gva/fidbee) and fork it with your GitHub account.
+
+### 2. Clone your repository
+
+```bash
+git clone git@github.com:YOUR_USERNAME/fidbee.git
+```
+
+### 3. Install the dependencies
+
+```bash
+cd fidbee
+yarn
+```
+
+### 4. Build the library
+
+```bash
+cd lib
+yarn build
+```
+
+This step must be run for each changes in `lib/` directory.
+You can use watching mode with `yarn build -w`.
+
+### 5. Start the example application
+
+```bash
+cd ../demo
+yarn dev
+```
+
+### 6. Start the example webhook server
+
+See relative documentation in [server-example directory](./server-example/)

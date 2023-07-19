@@ -2,7 +2,7 @@
   "name": "fidbee",
   "private": false,
   "version": "0.1.2",
-  "license": "AGPLv3",
+  "license": "AGPL-3.0-or-later",
   "homepage": "https://github.com/octree-gva/fidbee",
   "repository": {
     "url": "https://github.com/octree-gva/fidbee",
