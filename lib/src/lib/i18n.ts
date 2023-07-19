@@ -1,10 +1,22 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
 const resources = {
   en: {
     translation: {
       button: "Support",
+      "modal.title": "Report a bug",
+      "modal.cancel": "Cancel",
+      "modal.send": "Submit",
+      "form.comment": "Bug description",
+      "form.email": "Contact email",
+      "form.capture": "Take a screenshot",
+      "error.noComment": "Please provide a description of the encountered bug.",
+      "error.noEmail": "Please provide a contact email.",
+      "error.badEmail": "Please check the email format.",
+      "error.webhookFetch":
+        "An error occurred while sending the message. If the issue persists, please contact us via email.",
     },
   },
   fr: {
@@ -25,12 +37,27 @@ const resources = {
   },
 };
 
-i18n.use(initReactI18next).init({
-  resources,
-  lng: "fr",
-  interpolation: {
-    escapeValue: false,
-  },
-});
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false,
+    },
+    detection: {
+      order: [
+        "navigator",
+        "querystring",
+        "cookie",
+        "localStorage",
+        "sessionStorage",
+        "htmlTag",
+        "path",
+        "subdomain",
+      ],
+    },
+  });
 
 export default i18n;
