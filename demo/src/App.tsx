@@ -28,7 +28,10 @@ function App() {
       <center>
         <img src="/puppy.jpeg" />
       </center>
-      <Fidbee webhookUrl="http://localhost:4000" projectName="Demo Fidbee" />
+      <Fidbee
+        webhookUrl="http://localhost:8080/notify"
+        projectName="Demo Fidbee"
+      />
     </>
   );
 }

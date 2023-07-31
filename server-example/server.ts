@@ -1,7 +1,7 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import sendEmail from "./src/sendEmail.ts";
 
-const PORT = 4000;
+const PORT = 8080;
 const app = new Application();
 
 app.use((ctx, next) => {
@@ -17,9 +17,20 @@ app.addEventListener("listen", ({ port }) => {
   console.log(`🚀 Running on ${port}`);
 });
 
+app.use(async (context, next) => {
+  try {
+    await context.send({
+      root: `${Deno.cwd()}/assets`,
+      index: "index.html",
+    });
+  } catch {
+    await next();
+  }
+});
+
 const router = new Router();
 
-router.post("/", async ctx => {
+router.post("/notify", async ctx => {
   const body = await ctx.request.body({ type: "json" });
   const payload: FeedbackPayload = await body.value;
   const hasScreenCapture = !!payload.screenCapture;
@@ -35,4 +46,5 @@ router.post("/", async ctx => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
+
 await app.listen({ port: PORT });

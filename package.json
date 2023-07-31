@@ -1,5 +1,5 @@
 {
-  "name": "fidbee",
+  "name": "fidbee-ws",
   "private": true,
   "workspaces": [
     "lib",

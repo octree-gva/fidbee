@@ -1,16 +1,20 @@
 import { SMTPClient, SendConfig } from "https://deno.land/x/denomailer/mod.ts";
 import { html } from "https://deno.land/x/html/mod.ts";
-import "https://deno.land/std@0.193.0/dotenv/load.ts";
+import { load } from "https://deno.land/std@0.193.0/dotenv/mod.ts";
+
+await load({ allowEmptyValues: true, examplePath: "" });
 
 const emailTo =
   Deno.env.get("SMTP_RECEIVER") || Deno.env.get("SMTP_SENDER") || "";
 
-export default (payload: FeedbackPayload) =>
-  sendEmail({
-    to: emailTo,
-    subject: `New feedback by Fidbee for project ${payload.projectName}`,
-    html: formatEmailContent(payload),
-  });
+export default (payload: FeedbackPayload) => {
+  if (emailTo)
+    sendEmail({
+      to: emailTo,
+      subject: `New feedback by Fidbee for project ${payload.projectName}`,
+      html: formatEmailContent(payload),
+    });
+};
 
 const formatEmailContent = (payload: FeedbackPayload) => html`<div>
   <p>You received a new feedback by Fidbee:</p>

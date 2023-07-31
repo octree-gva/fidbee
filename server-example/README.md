@@ -18,4 +18,4 @@ Then, use Deno and appropriate permissions to start server.
 deno run --allow-net --allow-read --allow-env server.ts
 ```
 
-Server now runs on http://localhost:4000.
+Server now runs on http://localhost:8080.
