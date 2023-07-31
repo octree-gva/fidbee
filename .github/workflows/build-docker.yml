@@ -20,5 +20,5 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          load: true
-          tags: fidbee-demo:latest
+          push: true
+          tags: octree/fidbee-demo:latest
