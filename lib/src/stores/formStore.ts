@@ -4,6 +4,7 @@ interface FormState {
   comment: string;
   email: string;
   screenCapture: string;
+  allowAnonymous: boolean;
   errors: string[];
 }
 
@@ -16,6 +17,7 @@ const initialState: FormState = {
   comment: "",
   email: "",
   screenCapture: "",
+  allowAnonymous: false,
   errors: [],
 };
 

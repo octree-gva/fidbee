@@ -32,6 +32,7 @@ function App() {
         webhookUrl="http://localhost:8080/notify"
         projectName="Demo Fidbee"
         userEmail="demo@fidbee.org"
+        allowAnonymous
       />
     </>
   );

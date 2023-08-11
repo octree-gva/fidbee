@@ -38,11 +38,18 @@ function App() {
 export default App;
 ```
 
-A *Support* button appears in the bottom-right edge of the screen.
+A _Support_ button appears in the bottom-right edge of the screen.
 If a user fills the feedback form, a webhook is sent to the configured
 webhook URL.
 
 See an example of usage in the [demo directory](./demo/).
+
+### Parameters
+
+- `projectName` [required] - string : Name of the project/app
+- `webhookUrl` [required] - string : URL to send to webhooks on new message
+- `userEmail` - string : Pre-filled email in form
+- `allowAnonymous` - boolean : Allow/Disallow messages without email
 
 ### Connect your server
 

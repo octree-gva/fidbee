@@ -12,13 +12,14 @@ export const sendWebhook = async (options: Options) => {
   const { projectName, webhookUrl } = options;
   const errors: string[] = [];
   formStore.setState({ errors: [] });
-  const { comment, email, screenCapture } = formStore.getState();
+  const { comment, email, screenCapture, allowAnonymous } =
+    formStore.getState();
   const url = window.location.href;
   const datetime = new Date().toISOString();
 
   if (!comment) errors.push("noComment");
-  if (!email) errors.push("noEmail");
-  else if (!EMAIL_REGEX.test(email)) errors.push("badEmail");
+  if (!email && !allowAnonymous) errors.push("noEmail");
+  else if (email && !EMAIL_REGEX.test(email)) errors.push("badEmail");
 
   if (errors.length > 0) {
     formStore.setState({ errors });

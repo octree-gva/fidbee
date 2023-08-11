@@ -12,10 +12,11 @@ interface Props {
   projectName: string;
   webhookUrl: string;
   userEmail?: string;
+  allowAnonymous?: boolean;
 }
 
 const Fidbee = (props: Props) => {
-  const { projectName, webhookUrl, userEmail } = props;
+  const { projectName, webhookUrl, userEmail, allowAnonymous } = props;
   const { t } = useTranslation();
   const [modalIsOpen, toggleModal] = useReducer(i => !i, false);
   const [isCapturing, setIsCapturing] = useState(false);
@@ -23,8 +24,8 @@ const Fidbee = (props: Props) => {
   const setForm = useFormStore(s => s.set);
 
   useEffect(() => {
-    setForm({ email: userEmail });
-  }, [userEmail, setForm]);
+    setForm({ email: userEmail, allowAnonymous });
+  }, [userEmail, allowAnonymous, setForm]);
 
   const onClickCapture = (desktopCallback: () => void) => {
     const isTouchDevice = "ontouchstart" in document.documentElement;
