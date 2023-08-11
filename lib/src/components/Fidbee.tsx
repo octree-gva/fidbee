@@ -1,6 +1,6 @@
 import { ScreenCapture } from "react-screen-capture";
 import Button from "@mui/material/Button";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FidbeeModal from "./Modal";
 import useFormStore from "../stores/formStore";
@@ -9,14 +9,19 @@ import { sendWebhook } from "../lib/sendWebhook";
 interface Props {
   projectName: string;
   webhookUrl: string;
+  userEmail?: string;
 }
 
 const Fidbee = (props: Props) => {
-  const { projectName, webhookUrl } = props;
+  const { projectName, webhookUrl, userEmail } = props;
   const { t } = useTranslation();
   const [modalIsOpen, toggleModal] = useReducer(i => !i, false);
   const [isCapturing, setIsCapturing] = useState(false);
   const setForm = useFormStore(s => s.set);
+
+  useEffect(() => {
+    setForm({ email: userEmail });
+  }, [userEmail, setForm]);
 
   const onEndCapture = (url: string) => {
     setForm({ screenCapture: url });
