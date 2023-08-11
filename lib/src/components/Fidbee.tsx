@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import FidbeeModal from "./Modal";
 import useFormStore from "../stores/formStore";
 import { sendWebhook } from "../lib/sendWebhook";
+import html2canvas from "html2canvas";
 
 interface Props {
   projectName: string;
@@ -22,6 +23,20 @@ const Fidbee = (props: Props) => {
   useEffect(() => {
     setForm({ email: userEmail });
   }, [userEmail, setForm]);
+
+  const onClickCapture = (desktopCallback: () => void) => {
+    const isTouchDevice = "ontouchstart" in document.documentElement;
+    setIsCapturing(true);
+
+    if (isTouchDevice) {
+      setTimeout(async () => {
+        const canvas = await html2canvas(document.body);
+        const base64image = canvas.toDataURL("image/png");
+        setForm({ screenCapture: base64image });
+        setIsCapturing(false);
+      }, 500);
+    } else desktopCallback();
+  };
 
   const onEndCapture = (url: string) => {
     setForm({ screenCapture: url });
@@ -61,10 +76,7 @@ const Fidbee = (props: Props) => {
               open={modalIsOpen && !isCapturing}
               onClose={toggleModal}
               onSend={handleSend}
-              startCapture={() => {
-                setIsCapturing(true);
-                onStartCapture();
-              }}
+              startCapture={() => onClickCapture(onStartCapture)}
             />
           </>
         )}
