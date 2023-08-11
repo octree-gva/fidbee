@@ -1,5 +1,6 @@
 import { ScreenCapture } from "react-screen-capture";
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
 import { useEffect, useReducer, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FidbeeModal from "./Modal";
@@ -18,6 +19,7 @@ const Fidbee = (props: Props) => {
   const { t } = useTranslation();
   const [modalIsOpen, toggleModal] = useReducer(i => !i, false);
   const [isCapturing, setIsCapturing] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const setForm = useFormStore(s => s.set);
 
   useEffect(() => {
@@ -48,6 +50,7 @@ const Fidbee = (props: Props) => {
     try {
       await sendWebhook({ projectName, webhookUrl });
       toggleModal();
+      setShowConfirmation(true);
     } catch (error) {
       console.error(error);
     }
@@ -81,6 +84,13 @@ const Fidbee = (props: Props) => {
           </>
         )}
       </ScreenCapture>
+      <Snackbar
+        open={showConfirmation}
+        autoHideDuration={6000}
+        onClose={() => setShowConfirmation(false)}
+        message={t`sent.confirmation`}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      />
     </>
   );
 };
