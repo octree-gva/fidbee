@@ -2,10 +2,8 @@ FROM denoland/deno:ubuntu-1.35.2 AS build
 
 WORKDIR /app
 COPY ./demo .
-RUN apk add --no-cache yarn npm
 WORKDIR /app/demo
-RUN yarn
-RUN yarn build
+RUN deno task build
 
 FROM denoland/deno:ubuntu-1.35.2
 
