@@ -1,10 +1,13 @@
 import { SMTPClient, SendConfig } from "https://deno.land/x/denomailer/mod.ts";
 import { html } from "https://deno.land/x/html/mod.ts";
-import { load } from "https://deno.land/std@0.193.0/dotenv/mod.ts";
+import "https://deno.land/std@0.193.0/dotenv/load.ts";
 
-const envs = await load({ allowEmptyValues: true, examplePath: "" });
+const emailTo =
+  Deno.env.get("SMTP_RECEIVER") || Deno.env.get("SMTP_SENDER") || "";
 
-const emailTo = envs["SMTP_RECEIVER"] || envs["SMTP_SENDER"] || "";
+if (emailTo) {
+  console.log(`Email notifications will be send to ${emailTo}`);
+}
 
 export default (payload: FeedbackPayload) => {
   if (emailTo)
@@ -34,12 +37,12 @@ const formatEmailContent = (payload: FeedbackPayload) => html`<div>
 const sendEmail = async (config: Omit<SendConfig, "from">) => {
   const client = new SMTPClient({
     connection: {
-      hostname: envs["SMTP_HOST"] || "",
-      port: parseInt(envs["SMTP_PORT"] || "587"),
-      tls: envs["SMTP_TLS"] === "true",
+      hostname: Deno.env.get("SMTP_HOST") || "",
+      port: parseInt(Deno.env.get("SMTP_PORT") || "587"),
+      tls: Deno.env.get("SMTP_TLS") === "true",
       auth: {
-        username: envs["SMTP_USERNAME"] || "",
-        password: envs["SMTP_PASSWORD"] || "",
+        username: Deno.env.get("SMTP_USERNAME") || "",
+        password: Deno.env.get("SMTP_PASSWORD") || "",
       },
     },
   });
@@ -48,7 +51,7 @@ const sendEmail = async (config: Omit<SendConfig, "from">) => {
     console.log(`Send email notification to ${emailTo}`);
     const response = await client.send({
       ...config,
-      from: envs["SMTP_SENDER"] || "sender@example.org",
+      from: Deno.env.get("SMTP_SENDER") || "sender@example.org",
     });
 
     await client.close();
