@@ -2,11 +2,13 @@ name: Build & Publish Docker image for demo
 
 on:
   push:
+    paths-ignore:
+      - "lib/**"
     branches:
       - main
 
 jobs:
-  build-publish-docker:
+  build-publish-docker-demo:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
