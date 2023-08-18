@@ -1,4 +1,4 @@
-name: Build & Publish Docker image for demo
+name: Build & Publish Docker image for example server
 
 on:
   push:

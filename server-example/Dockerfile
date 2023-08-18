@@ -1,7 +1,7 @@
 FROM denoland/deno:alpine-1.35.2
 
 WORKDIR /app
-COPY ./server-example .
+COPY . .
 
 EXPOSE 8080
 
