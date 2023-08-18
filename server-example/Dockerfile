@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine-1.35.2
+FROM denoland/deno:ubuntu-1.35.2
 
 WORKDIR /app
 COPY . .

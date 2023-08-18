@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine-1.35.2 AS build
+FROM denoland/deno:ubuntu-1.35.2 AS build
 
 WORKDIR /app
 COPY ./demo .
@@ -7,7 +7,7 @@ WORKDIR /app/demo
 RUN yarn
 RUN yarn build
 
-FROM denoland/deno:alpine-1.35.2
+FROM denoland/deno:ubuntu-1.35.2
 
 WORKDIR /app
 COPY ./server-example .
