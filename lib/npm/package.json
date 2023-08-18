@@ -1,0 +1,44 @@
+{
+  "module": "./esm/index.js",
+  "main": "./script/index.js",
+  "name": "fidbee",
+  "version": "1.1.0",
+  "description": "Easy feedback from your React app",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "url": "https://github.com/octree-gva/fidbee",
+    "type": "git",
+    "directory": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/octree-gva/fidbee/issues"
+  },
+  "peerDependencies": {
+    "@mui/material": "^5.13.7",
+    "react": "^18.2.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "react-dom": "^18.2.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./script/index.js"
+    }
+  },
+  "scripts": {
+    "test": "node test_runner.js"
+  },
+  "dependencies": {
+    "html2canvas": "*",
+    "i18next": "*",
+    "i18next-browser-languagedetector": "*",
+    "react-i18next": "*",
+    "react-screen-capture": "*",
+    "zustand": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "picocolors": "^1.0.0"
+  }
+}

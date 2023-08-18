@@ -1,4 +1,4 @@
-import { create } from "npm:zustand";
+import { create } from "zustand";
 
 interface FormState {
   comment: string;

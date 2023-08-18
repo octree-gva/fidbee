@@ -1,14 +1,14 @@
-import React from "npm:react";
+import React from "react";
 import {
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-} from "npm:@mui/material";
-import { useTranslation } from "npm:react-i18next";
-import Form from "./Form.tsx";
-import useFormStore from "../stores/formStore.ts";
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+import Form from "./Form.js";
+import useFormStore from "../stores/formStore.js";
 
 interface Props {
   open: boolean;

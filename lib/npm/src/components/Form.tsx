@@ -1,7 +1,7 @@
-import React from "npm:react";
-import { Box, Button, Stack, TextField, Typography } from "npm:@mui/material";
-import { useTranslation } from "npm:react-i18next";
-import useFormStore from "../stores/formStore.ts";
+import React from "react";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import useFormStore from "../stores/formStore.js";
 
 type Props = {
   startCapture: () => void;

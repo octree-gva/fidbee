@@ -1,11 +1,11 @@
-import { ScreenCapture } from "npm:react-screen-capture";
-import { Button, Snackbar } from "npm:@mui/material";
-import React, { useEffect, useReducer, useState } from "npm:react";
-import { useTranslation } from "npm:react-i18next";
-import html2canvas from "npm:html2canvas";
-import FidbeeModal from "./Modal.tsx";
-import useFormStore from "../stores/formStore.ts";
-import { sendWebhook } from "../lib/sendWebhook.ts";
+import { ScreenCapture } from "react-screen-capture";
+import { Button, Snackbar } from "@mui/material";
+import React, { useEffect, useReducer, useState } from "react";
+import { useTranslation } from "react-i18next";
+import html2canvas from "html2canvas";
+import FidbeeModal from "./Modal.js";
+import useFormStore from "../stores/formStore.js";
+import { sendWebhook } from "../lib/sendWebhook.js";
 
 interface Props {
   projectName: string;

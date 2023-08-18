@@ -1,7 +1,8 @@
 {
   "name": "fidbee",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "AGPL-3.0-or-later",
+  "description": "Easy feedback from your React app",
   "homepage": "https://github.com/octree-gva/fidbee",
   "repository": {
     "url": "https://github.com/octree-gva/fidbee",
@@ -13,9 +14,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "deno run -A build_npm.ts",
+    "dev": "deno run -A --watch=src/ build_npm.ts"
   },
   "dependencies": {
     "html2canvas": "^1.4.1",
@@ -36,34 +36,14 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.59.0",
-    "@typescript-eslint/parser": "^5.59.0",
-    "@vitejs/plugin-react": "^4.0.1",
-    "@vitejs/plugin-react-swc": "^3.0.0",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9",
-    "vite-plugin-dts": "^3.0.3"
+    "@types/react-dom": "^18.0.11"
   },
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/fidbee.umd.js",
-  "module": "./dist/fidbee.es.js",
-  "types": "./dist/index.d.ts",
+  "module": "./npm/esm/index.js",
+  "main": "./npm/script/index.js",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/fidbee.es.js"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/fidbee.umd.js"
-      }
+      "import": "./npm/esm/index.js",
+      "require": "./npm/script/index.js"
     }
   }
 }
